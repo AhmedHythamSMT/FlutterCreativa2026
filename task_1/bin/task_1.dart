@@ -11,14 +11,16 @@ void main(List<String> arguments) {
   );
   print('Q2:');
   print(
-    task_1.discountPrice(productprice: 100, isPremium: true, hasCoupon: false),
+    "Discounted Price: ${task_1.discountPrice(productprice: 100, isPremium: true, hasCoupon: false)}",
   );
   print('Q3:');
   print(task_1.gradeScore(examScore: 80, attendance: 80));
   print('Q4:');
   print(task_1.loanElig(salary: 6000, age: 30, hasExistingLoan: false));
   print('Q5:');
-  print(task_1.totalDeliveryCost(orderAmount: 100, distanceInKilometers: 10.5));
+  print(
+    "Total Cost: ${task_1.totalDeliveryCost(orderAmount: 100, distanceInKilometers: 10.5)}",
+  );
   print('Q6:');
   print(task_1.calculateBonus(yearsOfExperience: 5, rating: 4));
   print('Q7:');
