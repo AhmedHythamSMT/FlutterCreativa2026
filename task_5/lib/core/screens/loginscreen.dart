@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:task_5/core/features/custom_navbar/custom_navbar.dart';
 import 'package:task_5/core/features/logchoice/custom_button.dart';
+import 'package:task_5/core/features/loginscreen/custom_textfield.dart';
+import 'package:task_5/core/screens/forgotpassword.dart';
 import 'package:task_5/core/screens/homescreen.dart';
+import 'package:task_5/core/screens/signup.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({super.key});
@@ -11,147 +15,157 @@ class Loginscreen extends StatefulWidget {
 }
 
 class _LoginscreenState extends State<Loginscreen> {
+  int _currentIndex = 0;
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
 
+  void _onTabTapped(int index) {
+    setState(() => _currentIndex = index);
+  }
+
   @override
   Widget build(BuildContext context) {
+    // final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
+      resizeToAvoidBottomInset: true,
+      bottomNavigationBar: CustomBottomNavBar(
+        currentIndex: _currentIndex,
+        onTap: _onTabTapped,
+      ),
       body: Stack(
         children: [
           Align(
             alignment: Alignment.topCenter,
-            child: SizedBox(
-              child: Image.asset(
-                'assets/images/logowbg.jpg',
-                fit: BoxFit.contain,
-              ),
-            ),
+            child: Image.asset('assets/images/logowbg.jpg', fit: BoxFit.cover),
           ),
 
           Align(
             alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 520,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.blueAccent,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+            child: SingleChildScrollView(
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: Colors.blueAccent,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  ),
                 ),
-                boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 10)],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                padding: EdgeInsets.only(
+                  top: 30,
+                  left: screenWidth * 0.04,
+                  right: screenWidth * 0.04,
+                  bottom: 40,
+                ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      'اهلا بك نحن سعداء بعودتك',
+                    const Text(
+                      'أهلاً بك نحن سعداء بعودتك',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.w900,
-                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
                       ),
                     ),
-                    SizedBox(height: 5),
-                    Text(
+                    const SizedBox(height: 8),
+                    const Text(
                       'من فضلك قم بتسجيل الدخول',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 25,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 18,
                       ),
                     ),
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 25.0,
-                        vertical: 12,
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Colors.white,
-                        ),
-                        child: Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: TextField(
-                            textAlign: TextAlign.right,
-                            controller: _phoneController,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.person_4_outlined,
-                                color: Colors.blueAccent,
-                              ),
-                              labelText: 'رقم الهاتف',
-                              border: InputBorder.none,
-                              labelStyle: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 16,
-                              ),
-                            ),
+                    const SizedBox(height: 30),
+
+                    CustomTextField(
+                      controller: _phoneController,
+                      labelText: 'رقم الهاتف',
+                      prefixIcon: Icons.person_4_outlined,
+                      iconColor: Colors.blueAccent,
+                      labelColor: Colors.grey,
+                      fontSize: 16,
+                    ),
+                    const SizedBox(height: 15),
+
+                    CustomTextField(
+                      controller: _passController,
+                      labelText: 'كلمة المرور',
+                      prefixIcon: Icons.lock_person_outlined,
+                      suffixIcon: Icons.visibility_outlined,
+                      suffixOnPressed: () => () {},
+                      iconColor: Colors.blueAccent,
+                      labelColor: Colors.grey,
+                      fontSize: 16,
+                    ),
+
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: TextButton(
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const Forgotpassword(),
                           ),
                         ),
+                        child: const Text(
+                          'هل نسيت كلمة المرور؟',
+                          style: TextStyle(color: Colors.white, fontSize: 14),
+                        ),
                       ),
                     ),
+
                     const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: Container(
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Colors.white,
-                        ),
-                        child: Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: TextField(
-                            textAlign: TextAlign.right,
-                            controller: _phoneController,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.lock_person_outlined,
-                                color: Colors.blueAccent,
-                              ),
-                              suffixIcon: IconButton(
-                                icon: Icon(
-                                  Icons.visibility_off_outlined,
-                                  color: Colors.blueAccent,
-                                ),
-                                onPressed: () {
-                                  // Toggle password visibility
-                                },
-                              ),
-                              labelText: 'كلمة المرور',
-                              border: InputBorder.none,
-                              labelStyle: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 30),
+
                     SizedBox(
-                      width: 300,
+                      width: screenWidth * 0.6,
+                      height: 50,
                       child: CustomButton(
                         text: "تسجيل الدخول",
                         onPressed: () {
-                          String pn = _passController.text.trim();
-                          if (pn.isNotEmpty) {
+                          if (_phoneController.text.isNotEmpty) {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (_) => Homescreen()),
                             );
-                          } else {}
+                          }
                         },
                       ),
+                    ),
+
+                    const SizedBox(height: 8),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      textDirection: TextDirection.rtl,
+                      children: [
+                        const Text(
+                          'ليس لديك حساب؟',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: .w900,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => const Signup()),
+                          ),
+                          child: const Text(
+                            'إنشاء حساب',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

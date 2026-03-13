@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_5/core/features/custom_navbar/custom_navbar.dart';
 import 'package:task_5/core/routes/routes.dart';
 
 class Homescreen extends StatefulWidget {
@@ -10,6 +11,15 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
+  int _currentIndex = 0;
+
+  void _onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+    // Handle navigation based on index if needed
+  }
+
   final TextEditingController _nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -40,6 +50,10 @@ class _HomescreenState extends State<Homescreen> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: CustomBottomNavBar(
+        currentIndex: _currentIndex,
+        onTap: _onTabTapped,
       ),
     );
   }

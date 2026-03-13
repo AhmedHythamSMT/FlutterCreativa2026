@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/core/routes/app_routes.dart';
-import 'package:quiz/core/routes/routes.dart';
+import 'package:task_5/core/routes/app_routes.dart';
+import 'package:task_5/core/routes/routes.dart';
 
 void main() {
   runApp(const MainApp());

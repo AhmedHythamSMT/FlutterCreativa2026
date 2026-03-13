@@ -1,29 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:task_5/core/screens/logchoice.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({super.key});
 
+  @override
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
+}
+
+class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          // Background Image
           Positioned.fill(
             child: Image.asset('assets/images/splash.jpg', fit: BoxFit.fill),
           ),
-          Positioned(
-            left: 15,
-            child: SizedBox(
-              height: 300,
-              child: Center(
-                child: Image.asset('assets/images/logo.png', height: 190),
-              ),
-            ),
-          ),
-
-          //  bottom center Button
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(

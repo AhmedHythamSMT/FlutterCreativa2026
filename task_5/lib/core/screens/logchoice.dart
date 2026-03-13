@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_5/core/features/custom_navbar/custom_navbar.dart';
 import 'package:task_5/core/features/logchoice/custom_button.dart';
 import 'package:task_5/core/screens/loginscreen.dart';
 import 'package:task_5/core/screens/signup.dart';
@@ -12,93 +13,106 @@ class LogChoice extends StatefulWidget {
 }
 
 class _LogChoiceState extends State<LogChoice> {
+  int _currentIndex = 0;
+
+  void _onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Use MediaQuery to get screen dimensions
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
+      // Placing the navbar here automatically handles spacing if you use SafeArea
+      bottomNavigationBar: CustomBottomNavBar(
+        currentIndex: _currentIndex,
+        onTap: _onTabTapped,
+      ),
       body: Stack(
         children: [
-          Positioned.fill(
-            bottom: 160,
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/crctr2.jpg'),
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
+          // 1. Background Image - Positioned to take top 60% of screen
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            height: screenHeight * 0.6, // Takes 60% of screen height
+            child: Image.asset('assets/images/crctr2.jpg', fit: BoxFit.cover),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 320,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.blueAccent,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+
+          // 2. The Blue Content Area
+          Column(
+            children: [
+              // This pushes the blue container to the bottom
+              const Spacer(),
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(
+                  horizontal: screenWidth * 0.1, // 10% horizontal padding
+                  vertical: 30,
                 ),
-                boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 10)],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                decoration: const BoxDecoration(
+                  color: Colors.blueAccent,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  ),
+                ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      'اهلا بك في مؤسسة المسار',
+                    const Text(
+                      'أهلاً بك في مؤسسة المسار',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.w900,
                         fontSize: 22,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 5),
-                    Text(
-                      'للفئات الخاصه',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 25,
-                      ),
+                    const Text(
+                      'للفئات الخاصة',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 24),
                     ),
-                    SizedBox(height: 20),
-                    SizedBox(
-                      width: 320,
-                      child: CustomButton(
-                        text: "تسجيل الدخول",
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => const Loginscreen(),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    SizedBox(
-                      width: 320,
-                      child: CustomButton(
-                        text: 'إنشاء حساب',
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => const Signup()),
-                          );
-                        },
-                      ),
-                    ),
+                    const SizedBox(height: 30),
+
+                    _buildResponsiveButton("تسجيل الدخول", () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => Loginscreen()),
+                      );
+                    }),
+
+                    const SizedBox(height: 15),
+
+                    _buildResponsiveButton("إنشاء حساب", () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => Signup()),
+                      );
+                    }),
+
+                    const SizedBox(height: 10),
                   ],
                 ),
               ),
-            ),
+            ],
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildResponsiveButton(String text, VoidCallback onPressed) {
+    return SizedBox(
+      width: double.infinity,
+      height: 55,
+      child: CustomButton(text: text, onPressed: onPressed),
     );
   }
 }

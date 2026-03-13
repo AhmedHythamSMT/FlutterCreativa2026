@@ -1,15 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:task_5/core/features/custom_navbar/custom_navbar.dart';
 import 'package:task_5/core/routes/routes.dart';
 
-class Profilescreen extends StatelessWidget {
+class Profilescreen extends StatefulWidget {
   final String? name;
 
   const Profilescreen({super.key, required this.name});
+
+  @override
+  State<Profilescreen> createState() => _ProfilescreenState();
+}
+
+class _ProfilescreenState extends State<Profilescreen> {
+  int _currentIndex = 0;
+
+  void _onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+    // Handle navigation based on index if needed
+  }
+
   @override
   Widget build(BuildContext context) {
-    final displayName = (name == null || name!.isEmpty)
+    final displayName = (widget.name == null || widget.name!.isEmpty)
         ? 'No name provided'
-        : name!;
+        : widget.name!;
 
     return Scaffold(
       appBar: AppBar(
@@ -82,6 +98,10 @@ class Profilescreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: CustomBottomNavBar(
+        currentIndex: _currentIndex,
+        onTap: _onTabTapped,
       ),
     );
   }
