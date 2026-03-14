@@ -13,7 +13,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.splashscreen,
+      initialRoute: Routes.home5,
       onGenerateRoute: AppRoutes.generateRoute,
     );
   }

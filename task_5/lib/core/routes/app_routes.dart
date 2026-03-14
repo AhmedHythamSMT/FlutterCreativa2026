@@ -8,6 +8,8 @@ import 'package:task_5/core/screens/loginscreen.dart';
 import 'package:task_5/core/screens/homescreen.dart';
 import 'package:task_5/core/screens/profilescreen.dart';
 import 'package:task_5/core/screens/editprofile.dart';
+import 'package:task_5/core/screens/task5_screens/homescreen5.dart';
+import 'package:task_5/core/screens/task5_screens/orders_screen.dart';
 
 class AppRoutes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -32,6 +34,11 @@ class AppRoutes {
         );
       case Routes.editProfile:
         return MaterialPageRoute(builder: (_) => const Editprofile());
+      // task5 shopping
+      case Routes.home5:
+        return MaterialPageRoute(builder: (_) => const Homescreen5());
+      case Routes.orders:
+        return MaterialPageRoute(builder: (_) => const OrdersScreen());
 
       default:
         return MaterialPageRoute(

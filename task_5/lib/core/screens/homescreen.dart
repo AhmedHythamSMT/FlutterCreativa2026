@@ -17,7 +17,6 @@ class _HomescreenState extends State<Homescreen> {
     setState(() {
       _currentIndex = index;
     });
-    // Handle navigation based on index if needed
   }
 
   final TextEditingController _nameController = TextEditingController();

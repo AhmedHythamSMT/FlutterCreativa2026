@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:task_4/core/routes/routes.dart';
-import 'package:task_4/core/routes/screens/editrpofile.dart';
-import 'package:task_4/core/routes/screens/homescreen.dart';
-import 'package:task_4/core/routes/screens/profilescreen.dart';
+import 'package:task_4/core/screens/forgotpassword.dart';
+import 'package:task_4/core/screens/onboarding.dart';
+import 'package:task_4/core/screens/logchoice.dart';
+import 'package:task_4/core/screens/signup.dart';
+import 'package:task_4/core/screens/loginscreen.dart';
+import 'package:task_4/core/screens/homescreen.dart';
+import 'package:task_4/core/screens/profilescreen.dart';
+import 'package:task_4/core/screens/editprofile.dart';
 
 class AppRoutes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case Routes.splashscreen:
+        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
+      case Routes.logChoice:
+        return MaterialPageRoute(builder: (_) => const LogChoice());
+      case Routes.login:
+        return MaterialPageRoute(builder: (_) => const Loginscreen());
+      case Routes.forgotPassword:
+        return MaterialPageRoute(builder: (_) => const Forgotpassword());
+      case Routes.signup:
+        return MaterialPageRoute(builder: (_) => const Signup());
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const Homescreen());
       case Routes.profile:
@@ -16,7 +31,8 @@ class AppRoutes {
           builder: (_) => Profilescreen(name: name ?? "Guest"),
         );
       case Routes.editProfile:
-        return MaterialPageRoute(builder: (_) => const Editrpofile());
+        return MaterialPageRoute(builder: (_) => const Editprofile());
+
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

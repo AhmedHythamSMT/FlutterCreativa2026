@@ -6,7 +6,7 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required TextEditingController controller,
     required this.labelText,
-    required this.prefixIcon,
+    this.prefixIcon,
     this.suffixIcon,
     required this.iconColor,
     required this.labelColor,
@@ -16,7 +16,7 @@ class CustomTextField extends StatelessWidget {
 
   final TextEditingController _controller;
   final String labelText;
-  final IconData prefixIcon;
+  final IconData? prefixIcon;
   final IconData? suffixIcon;
   final Color iconColor;
   final Color labelColor;
@@ -32,6 +32,14 @@ class CustomTextField extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              spreadRadius: 0.5,
+              blurRadius: 12,
+              blurStyle: .outer,
+            ),
+          ],
         ),
         child: Directionality(
           textDirection: TextDirection.rtl,
