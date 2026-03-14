@@ -15,7 +15,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset('assets/images/splash.jpg', fit: BoxFit.fill),
+            child: Image.asset('assets/images/splash.jpg', fit: BoxFit.cover),
           ),
           Align(
             alignment: Alignment.bottomCenter,
