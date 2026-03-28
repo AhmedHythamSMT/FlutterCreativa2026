@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1022135696411",
+    "project_id": "creativa2026creativa2026-2842f",
+    "storage_bucket": "creativa2026creativa2026-2842f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022135696411:android:42d0f511396c33d6bf8cbe",
+        "android_client_info": {
+          "package_name": "com.example.task_6_node_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqs0Og-ViaiJe1tv95kpY5S5sIFjbYVsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
