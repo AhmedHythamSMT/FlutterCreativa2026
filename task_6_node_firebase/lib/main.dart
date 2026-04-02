@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:task_6_node_firebase/core/features/auth/ui/screens/counter_screen.dart';
 import 'firebase/firebase_options.dart';
 import 'package:task_6_node_firebase/core/routes/app_routes.dart';
 
@@ -17,11 +18,12 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: FirebaseAuth.instance.currentUser == null
-          ? AppRoutes.register
-          : AppRoutes.home,
+      home: CounterScreen(),
+      // initialRoute: FirebaseAuth.instance.currentUser == null
+      //     ? AppRoutes.register
+      //     : AppRoutes.home,
 
-      onGenerateRoute: AppRoutes.generateRoute,
+      // onGenerateRoute: AppRoutes.generateRoute,
     );
   }
 }

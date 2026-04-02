@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:task_6_node_firebase/core/features/auth/data/models/user_data_class.dart';
 import 'package:task_6_node_firebase/core/features/auth/data/services/firebase_auth_services.dart';
-import 'package:task_6_node_firebase/core/features/auth/ui/screens/home_screen.dart';
 import 'package:task_6_node_firebase/core/features/auth/ui/widgets/custom_auth_button.dart';
 import 'package:task_6_node_firebase/core/features/auth/ui/widgets/custom_social_button.dart';
 import 'package:task_6_node_firebase/core/features/auth/ui/widgets/custom_textfield.dart';
@@ -30,8 +29,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   );
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final bool _isRegisterLoading = false;
   bool _isLoading = false;
-  bool _isRegisterLoading = false;
   bool _isGoogleLoading = false;
 
   void _onGoogleSignInPressed() async {
