@@ -18,6 +18,16 @@ class FirebaseFirestoreServices {
     }
   }
 
+  static Stream<List<Map<String, dynamic>>> getUsersStream() {
+    return _db.collection('users').snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) {
+        final data = doc.data();
+        data['id'] = doc.id;
+        return data;
+      }).toList();
+    });
+  }
+
   static Future<DocumentSnapshot> getUserData(String uid) async {
     return await _db.collection('users').doc(uid).get();
   }

@@ -43,7 +43,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
 
-      body: const Center(child: Text("مرحباً بك في الصفحة الرئيسية")),
+      body: Center(
+        child: TextButton(
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, AppRoutes.users);
+          },
+          child: Text("المستخدمين", style: TextStyle(fontSize: 20)),
+        ),
+      ),
     );
   }
 

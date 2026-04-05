@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_6_node_firebase/core/features/auth/data/models/user_data_class.dart';
 import 'package:task_6_node_firebase/core/features/auth/data/services/firebase_auth_services.dart';
-import 'package:task_6_node_firebase/core/features/auth/ui/screens/home_screen.dart';
+import 'package:task_6_node_firebase/core/features/home/ui/home_screen.dart';
 import 'package:task_6_node_firebase/core/features/auth/ui/screens/register_screen.dart';
 import 'package:task_6_node_firebase/core/features/auth/ui/widgets/custom_auth_button.dart';
 import 'package:task_6_node_firebase/core/features/auth/ui/widgets/custom_social_button.dart';
@@ -37,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (result == "Success") {
       _showSnackBar("تم تسجيل الدخول عبر جوجل بنجاح", isError: false);
       Navigator.pushReplacementNamed(context, AppRoutes.home);
+      // Navigator.pushReplacementNamed(context, AppRoutes.users);
     } else if (result == "تم إلغاء عملية الدخول" ||
         result == "تم إلغاء تسجيل الدخول بواسطة المستخدم") {
       debugPrint("User opted out of login.");
@@ -62,10 +63,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (result == "Success") {
       _showSnackBar("تم تسجيل الدخول بنجاح", isError: false);
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const HomeScreen()),
-      );
+      Navigator.pushReplacementNamed(context, AppRoutes.home);
+      // Navigator.pushReplacementNamed(context, AppRoutes.users);
     } else {
       _showSnackBar(result ?? "خطأ في تسجيل الدخول");
     }
