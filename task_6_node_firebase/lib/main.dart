@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:task_6_node_firebase/core/features/counter/ui/counter_screen.dart';
-import 'package:task_6_node_firebase/core/features/auth/ui/screens/users_screen.dart';
+import 'package:task_6_node_firebase/core/features/home/ui/home_screen.dart';
 import 'package:task_6_node_firebase/core/theme/app_theme.dart';
 import 'firebase_options.dart';
-import 'package:task_6_node_firebase/core/routes/app_routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,11 +20,14 @@ class MainApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      // home: UsersScreen(),
-      initialRoute: FirebaseAuth.instance.currentUser == null
-          ? AppRoutes.register
-          : AppRoutes.home,
-      onGenerateRoute: AppRoutes.generateRoute,
+
+      // themeMode: switchTheme(),
+      home: HomeScreen(isdarktheme: false),
+
+      // initialRoute: FirebaseAuth.instance.currentUser == null
+      //     ? AppRoutes.register
+      //     : AppRoutes.home,
+      // onGenerateRoute: AppRoutes.generateRoute,
     );
   }
 }

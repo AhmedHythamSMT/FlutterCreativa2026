@@ -17,7 +17,9 @@ class AppRoutes {
       case register:
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case home:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return MaterialPageRoute(
+          builder: (_) => HomeScreen(isdarktheme: false),
+        );
       case users:
         return MaterialPageRoute(builder: (_) => const UsersScreen());
       default:

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_6_node_firebase/core/features/auth/data/models/user_data_class.dart';
 import 'package:task_6_node_firebase/core/features/auth/data/services/firebase_auth_services.dart';
-import 'package:task_6_node_firebase/core/features/home/ui/home_screen.dart';
 import 'package:task_6_node_firebase/core/features/auth/ui/screens/register_screen.dart';
 import 'package:task_6_node_firebase/core/features/auth/ui/widgets/custom_auth_button.dart';
 import 'package:task_6_node_firebase/core/features/auth/ui/widgets/custom_social_button.dart';

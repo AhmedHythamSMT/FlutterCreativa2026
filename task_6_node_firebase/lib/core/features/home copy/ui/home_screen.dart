@@ -1,15 +1,12 @@
-// ignore_for_file: use_build_context_synchronously, must_be_immutable
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task_6_node_firebase/core/bloc/theme_manager_bloc.dart';
 import 'package:task_6_node_firebase/core/features/auth/data/services/firebase_auth_services.dart';
 import 'package:task_6_node_firebase/core/routes/app_routes.dart';
 
 class HomeScreen extends StatefulWidget {
-  bool isdarktheme = false;
-  HomeScreen({super.key, required bool isdarktheme});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -26,52 +23,34 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     }
 
-    return BlocProvider(
-      create: (context) => ThemeManagerBloc(),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: Text(
-            "مرحباً، $displayName",
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          "مرحباً، $displayName",
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.logout, color: Colors.redAccent),
-              onPressed: () {
-                _showSignOutDialog(context);
-              },
-            ),
-          ],
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.redAccent),
+            onPressed: () {
+              _showSignOutDialog(context);
+            },
+          ),
+        ],
+      ),
 
-        body: Column(
-          children: [
-            Center(
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, AppRoutes.users);
-                },
-                child: Text("المستخدمين", style: TextStyle(fontSize: 20)),
-              ),
-            ),
-
-            Center(
-              child: Switch(
-                value: widget.isdarktheme,
-                onChanged: (value) {
-                  setState(() {
-                    widget.isdarktheme = value;
-                  });
-                },
-              ),
-            ),
-          ],
+      body: Center(
+        child: TextButton(
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, AppRoutes.users);
+          },
+          child: Text("المستخدمين", style: TextStyle(fontSize: 20)),
         ),
       ),
     );
@@ -111,7 +90,3 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 }
-
-// ThemeMode switchTheme() => ThemeData.dark().brightness == Brightness.dark
-//     ? ThemeMode.dark
-//     : ThemeMode.light;
